@@ -4,8 +4,9 @@
   font-family: "Computer Modern Serif", "Latin Modern Roman", "CMU Serif", serif;
   font-size: 18px;
   line-height: 1.55;
-  color: #111;
-  background: #fff;
+  color: #e9e7e2;
+  background: #111317;
+  color-scheme: dark;
 }
 
 * {
@@ -18,11 +19,13 @@ html {
 
 body {
   width: min(76rem, calc(100% - 2rem));
+  color: #e9e7e2;
+  background: #111317;
   margin: 1.5rem auto 3rem;
 }
 
 a {
-  color: #111;
+  color: #f0ede6;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.14em;
 }
@@ -32,7 +35,7 @@ a:hover {
 }
 
 .site-header {
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #484d55;
   padding-bottom: 0.75rem;
 }
 
@@ -50,10 +53,10 @@ a:hover {
 .site-header-banner img {
   display: block;
   width: 100%;
-  height: clamp(2.9rem, 5.6vw, 4.35rem);
-  object-fit: cover;
+  height: clamp(3.6rem, 6.5vw, 5.2rem);
+  object-fit: fill;
   object-position: center;
-  opacity: 0.98;
+  opacity: 1;
 }
 
 .site-header h1 {
@@ -111,7 +114,7 @@ pre,
 pre {
   overflow-x: auto;
   padding: 0.8rem;
-  border: 1px solid #aaa;
+  border: 1px solid #4a5059;
 }
 
 img {
@@ -122,15 +125,15 @@ img {
 blockquote {
   margin-left: 0;
   padding-left: 1rem;
-  border-left: 2px solid #999;
+  border-left: 2px solid #555b64;
 }
 
 .event-inbox {
-  border-top: 1px solid #999;
+  border-top: 1px solid #484d55;
 }
 
 .event-item {
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid #3f444c;
   scroll-margin-top: 1rem;
 }
 
@@ -177,7 +180,7 @@ blockquote {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #444;
+  color: #aaaeb6;
 }
 
 .event-date {
@@ -237,7 +240,7 @@ blockquote {
 }
 
 .site-index {
-  border-left: 1px solid #999;
+  border-left: 1px solid #484d55;
   padding-left: 1rem;
   min-width: 0;
 }
@@ -287,7 +290,7 @@ blockquote {
 
 .empty-state {
   margin: 0;
-  color: #555;
+  color: #9da2aa;
 }
 
 
@@ -296,7 +299,7 @@ blockquote {
 }
 
 .event-item:target {
-  border-top: 1px solid #bbb;
+  border-top: 1px solid #3f444c;
 }
 
 @media (max-width: 760px) {
@@ -306,7 +309,7 @@ blockquote {
 
   .site-index {
     border-left: 0;
-    border-top: 1px solid #999;
+    border-top: 1px solid #484d55;
     padding: 1.25rem 0 0;
   }
 
@@ -327,4 +330,16 @@ blockquote {
     grid-column: 1 / -1;
     grid-row: 2;
   }
+}
+
+
+button, input, textarea, select {
+  color: inherit;
+  background: #181b20;
+  border-color: #4a5059;
+}
+
+::selection {
+  color: #111317;
+  background: #ffd84d;
 }
