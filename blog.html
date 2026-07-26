@@ -1,0 +1,17 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+<h1>Blog</h1>
+<p>Essays and updates, in reverse chronological order.</p>
+
+<ul class="post-list">
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
+      <span>— {{ post.date | date: "%Y-%m-%d" }}</span>
+      {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncatewords: 45 }}</p>{% endif %}
+    </li>
+  {% endfor %}
+</ul>

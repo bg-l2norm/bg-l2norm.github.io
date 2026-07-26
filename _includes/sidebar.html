@@ -1,0 +1,32 @@
+<aside>
+  <section>
+    <h2>Recent posts</h2>
+    <ul>
+      {% for post in site.posts limit: 6 %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Subjects</h2>
+    <ul>
+      {% assign sorted_categories = site.categories | sort %}
+      {% for category in sorted_categories %}
+        {% assign category_slug = category[0] | slugify %}
+        <li>
+          <a href="{{ '/categories/#' | append: category_slug | relative_url }}">{{ category[0] }}</a>
+          ({{ category[1].size }})
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Elsewhere</h2>
+    <ul>
+      <li><a href="https://github.com/{{ site.author.github }}">GitHub</a></li>
+      <li><a href="{{ '/feed.xml' | relative_url }}">RSS feed</a></li>
+    </ul>
+  </section>
+</aside>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | escape }}">
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <p class="terminal-line">~/$ cat personal-site.txt</p>
+      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+      <p class="subtitle">{{ site.description }}</p>
+      <nav aria-label="Primary navigation">
+        <a href="{{ '/' | relative_url }}">home</a>
+        <a href="{{ '/blog/' | relative_url }}">blog</a>
+        <a href="{{ '/notes/' | relative_url }}">notes</a>
+        <a href="{{ '/achievements/' | relative_url }}">achievements</a>
+        <a href="{{ '/about/' | relative_url }}">about</a>
+        <a href="{{ '/archive/' | relative_url }}">archive</a>
+        <a href="{{ '/feed.xml' | relative_url }}">rss</a>
+      </nav>
+    </header>
+
+    <div class="page-grid">
+      <main id="content">
+        {{ content }}
+      </main>
+      {% include sidebar.html %}
+    </div>
+
+    <footer>
+      <hr>
+      <p>
+        © {{ 'now' | date: '%Y' }} {{ site.author.name }}.
+        Built from plain text and stubbornness.
+        <a href="https://github.com/{{ site.author.github }}/{{ site.author.github }}.github.io">source</a>
+      </p>
+    </footer>
+  </body>
+</html>
