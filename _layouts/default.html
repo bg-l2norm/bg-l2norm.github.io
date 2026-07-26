@@ -4,29 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | escape }}">
-    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+    <title>{% if page.url == '/' %}{{ site.title }}{% elsif page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/site.css?v=20260726-2' | relative_url }}">
   </head>
   <body>
     <header class="site-header{% if page.url == '/' %} site-header--home{% endif %}">
       {% if page.url == '/' %}
         <div class="site-header-banner" aria-hidden="true">
           <img
-            src="{{ '/assets/images/rosenbrock-manual-shooting-star-banner.svg' | relative_url }}"
+            src="{{ '/assets/images/rosenbrock-manual-shooting-star-banner-v2.svg' | relative_url }}"
             alt=""
             width="1152"
-            height="152"
+            height="144"
             decoding="async"
             fetchpriority="high">
         </div>
       {% endif %}
 
       <div class="site-header-copy">
-        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-        <nav aria-label="Primary navigation">
-          <a href="{{ '/' | relative_url }}">Home</a>
-          <a href="{{ '/blog/' | relative_url }}">Blog</a>
-          <a href="{{ '/notes/' | relative_url }}">Notes</a>
+        <p class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></p>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+          <a href="{{ '/blog/' | relative_url }}"{% if page.url == '/blog/' or page.collection == 'posts' %} aria-current="page"{% endif %}>Blog</a>
+          <a href="{{ '/notes/' | relative_url }}"{% if page.url == '/notes/' or page.collection == 'notes' %} aria-current="page"{% endif %}>Notes</a>
         </nav>
       </div>
     </header>

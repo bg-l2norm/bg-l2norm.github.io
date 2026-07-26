@@ -4,9 +4,9 @@
   font-family: "Computer Modern Serif", "Latin Modern Roman", "CMU Serif", serif;
   font-size: 18px;
   line-height: 1.55;
-  color: #e9e7e2;
-  background: #111317;
-  color-scheme: dark;
+  color: #1c1c1a;
+  background: rgb(250, 250, 250);
+  color-scheme: light;
 }
 
 * {
@@ -15,17 +15,18 @@
 
 html {
   scroll-behavior: smooth;
+  background: rgb(250, 250, 250);
 }
 
 body {
   width: min(76rem, calc(100% - 2rem));
-  color: #e9e7e2;
-  background: #111317;
   margin: 1.5rem auto 3rem;
+  color: #1c1c1a;
+  background: rgb(250, 250, 250);
 }
 
 a {
-  color: #f0ede6;
+  color: #1c1c1a;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.14em;
 }
@@ -34,9 +35,28 @@ a:hover {
   text-decoration-thickness: 2px;
 }
 
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #8b6a00;
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 .site-header {
-  border-bottom: 1px solid #484d55;
-  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #aaa9a5;
+  padding-bottom: 0.8rem;
 }
 
 .site-header-copy {
@@ -45,37 +65,42 @@ a:hover {
 
 .site-header-banner {
   width: 100%;
-  margin: -0.08rem 0 0.82rem;
-  padding-block: 0.12rem;
-  overflow: visible;
+  margin: 0 0 0.65rem;
   line-height: 0;
 }
 
 .site-header-banner img {
   display: block;
-  width: 100%;
-  max-width: none;
+  width: min(100%, 50rem);
   height: auto;
+  margin-left: auto;
   object-fit: contain;
-  object-position: center;
-  opacity: 1;
 }
 
-.site-header h1 {
+.site-title {
   margin: 0 0 0.45rem;
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: normal;
   line-height: 1;
 }
 
-.site-header h1 a {
+.site-title a {
   text-decoration: none;
 }
 
-nav {
+.site-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.site-nav a {
+  padding-block: 0.08rem;
+}
+
+.site-nav a[aria-current="page"] {
+  font-weight: bold;
+  text-decoration-thickness: 2px;
 }
 
 .page-grid {
@@ -96,10 +121,10 @@ h3 {
 }
 
 main > h1,
-main section > h1 {
+main section > h1:not(.visually-hidden) {
+  margin-top: 0;
   font-size: 2rem;
   font-weight: normal;
-  margin-top: 0;
 }
 
 h2 {
@@ -109,6 +134,7 @@ h2 {
 code,
 pre,
 .post-meta,
+.post-list-date,
 .event-date {
   font-family: "Computer Modern Typewriter", "Latin Modern Mono", "CMU Typewriter Text", monospace;
 }
@@ -116,7 +142,8 @@ pre,
 pre {
   overflow-x: auto;
   padding: 0.8rem;
-  border: 1px solid #4a5059;
+  border: 1px solid #b8b7b2;
+  background: #f3f3f1;
 }
 
 img {
@@ -127,15 +154,15 @@ img {
 blockquote {
   margin-left: 0;
   padding-left: 1rem;
-  border-left: 2px solid #555b64;
+  border-left: 2px solid #aaa9a5;
 }
 
 .event-inbox {
-  border-top: 1px solid #484d55;
+  border-top: 1px solid #aaa9a5;
 }
 
 .event-item {
-  border-bottom: 1px solid #3f444c;
+  border-bottom: 1px solid #c3c2bd;
   scroll-margin-top: 1rem;
 }
 
@@ -168,9 +195,9 @@ blockquote {
 .event-title {
   grid-column: 1;
   grid-row: 1;
-  font-weight: bold;
   min-width: 0;
   overflow: hidden;
+  font-weight: bold;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -180,9 +207,9 @@ blockquote {
   grid-row: 1;
   min-width: 0;
   overflow: hidden;
+  color: #5f5f5b;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #aaaeb6;
 }
 
 .event-date {
@@ -200,8 +227,8 @@ blockquote {
 .event-back {
   border: 0;
   padding: 0;
-  background: transparent;
   color: inherit;
+  background: transparent;
   font: inherit;
   text-decoration: underline;
   text-underline-offset: 0.14em;
@@ -209,6 +236,7 @@ blockquote {
 }
 
 .post-list {
+  margin-top: 0;
   padding-left: 1.2rem;
 }
 
@@ -220,13 +248,24 @@ blockquote {
   margin: 0.2rem 0;
 }
 
+.post-list-date {
+  margin-left: 0.45rem;
+  color: #666660;
+  font-size: 0.82rem;
+}
+
 .post-header h1 {
   margin-bottom: 0.25rem;
 }
 
 .post-meta {
   margin-top: 0;
+  color: #666660;
   font-size: 0.82rem;
+}
+
+.note-index {
+  margin-top: 0;
 }
 
 .note-index dt {
@@ -234,7 +273,8 @@ blockquote {
 }
 
 .note-index dd {
-  margin: 0 0 1rem 1rem;
+  margin: 0.15rem 0 1rem 1rem;
+  color: #555551;
 }
 
 .comments {
@@ -242,33 +282,34 @@ blockquote {
 }
 
 .site-index {
-  border-left: 1px solid #484d55;
-  padding-left: 1rem;
   min-width: 0;
+  padding-left: 1rem;
+  border-left: 1px solid #aaa9a5;
 }
 
 .site-index > h2 {
   margin: 0 0 1rem;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: normal;
 }
 
 .site-index h3 {
-  margin: 0 0 0.25rem;
-  font-size: 1rem;
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
 }
 
 .site-index section + section {
-  margin-top: 1.5rem;
+  margin-top: 1.35rem;
 }
 
 .site-index ul {
   margin: 0;
-  padding-left: 1.1rem;
+  padding: 0;
+  list-style: none;
 }
 
 .site-index li {
-  margin: 0.15rem 0;
+  margin: 0.18rem 0;
 }
 
 .site-index li a {
@@ -292,27 +333,55 @@ blockquote {
 
 .empty-state {
   margin: 0;
-  color: #9da2aa;
+  color: #666660;
 }
-
 
 .event-inbox:has(.event-item:target) .event-item:not(:target) {
   display: none;
 }
 
 .event-item:target {
-  border-top: 1px solid #3f444c;
+  border-top: 1px solid #c3c2bd;
+}
+
+button,
+input,
+textarea,
+select {
+  color: inherit;
+  border-color: #aaa9a5;
+  background: #f3f3f1;
+}
+
+::selection {
+  color: #1c1c1a;
+  background: #f2d879;
 }
 
 @media (max-width: 760px) {
+  body {
+    width: min(100% - 1.25rem, 76rem);
+    margin-top: 0.8rem;
+  }
+
+  .site-header-banner {
+    margin-bottom: 0.5rem;
+  }
+
+  .site-header-banner img {
+    width: 100%;
+  }
+
   .page-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
   }
 
   .site-index {
+    padding: 1.15rem 0 0;
+    border-top: 1px solid #aaa9a5;
     border-left: 0;
-    border-top: 1px solid #484d55;
-    padding: 1.25rem 0 0;
   }
 
   .event-item > summary {
@@ -334,14 +403,8 @@ blockquote {
   }
 }
 
-
-button, input, textarea, select {
-  color: inherit;
-  background: #181b20;
-  border-color: #4a5059;
-}
-
-::selection {
-  color: #111317;
-  background: #ffd84d;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

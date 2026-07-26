@@ -1,81 +1,78 @@
-<aside class="site-index" aria-label="Site index">
+{% assign is_home = false %}
+{% assign is_blog_index = false %}
+{% assign is_notes_index = false %}
+{% if page.url == '/' %}{% assign is_home = true %}{% endif %}
+{% if page.url == '/blog/' %}{% assign is_blog_index = true %}{% endif %}
+{% if page.url == '/notes/' %}{% assign is_notes_index = true %}{% endif %}
+
+<aside class="site-index" aria-label="Content index">
   <h2>Index</h2>
 
-  <section>
-    <h3><a href="{{ '/' | relative_url }}">Home</a></h3>
-    {% if site.data.events and site.data.events.size > 0 %}
-      <ul>
-        {% for event in site.data.events limit: 6 %}
-          <li>
-            <a href="{{ '/' | append: '#' | append: event.id | relative_url }}" title="{{ event.title }}">
-              {{ event.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-      {% if site.data.events.size > 6 %}
-        <details class="index-more">
-          <summary>More events</summary>
-          <ul>
-            {% for event in site.data.events offset: 6 %}
-              <li>
-                <a href="{{ '/' | append: '#' | append: event.id | relative_url }}" title="{{ event.title }}">
-                  {{ event.title }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </details>
+  {% unless is_home %}
+    <section>
+      <h3>Updates</h3>
+      {% if site.data.events and site.data.events.size > 0 %}
+        <ul>
+          {% for event in site.data.events limit: 6 %}
+            <li>
+              <a href="{{ '/' | append: '#' | append: event.id | relative_url }}" title="{{ event.title }}">
+                {{ event.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+        {% if site.data.events.size > 6 %}
+          <details class="index-more">
+            <summary>More updates</summary>
+            <ul>
+              {% for event in site.data.events offset: 6 %}
+                <li>
+                  <a href="{{ '/' | append: '#' | append: event.id | relative_url }}" title="{{ event.title }}">
+                    {{ event.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </details>
+        {% endif %}
+      {% else %}
+        <p class="empty-state">No updates.</p>
       {% endif %}
-    {% else %}
-      <p class="empty-state">No events.</p>
-    {% endif %}
-  </section>
+    </section>
+  {% endunless %}
 
-  <section>
-    <h3><a href="{{ '/blog/' | relative_url }}">Blog</a></h3>
-    {% if site.posts.size > 0 %}
-      <ul>
-        {% for post in site.posts limit: 8 %}
-          <li><a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-        {% endfor %}
-      </ul>
-      {% if site.posts.size > 8 %}
-        <details class="index-more">
-          <summary>More posts</summary>
-          <ul>
-            {% for post in site.posts offset: 8 %}
+  {% unless is_blog_index %}
+    <section>
+      <h3>{% if page.collection == 'posts' %}More writing{% else %}Writing{% endif %}</h3>
+      {% if site.posts.size > 0 %}
+        <ul>
+          {% for post in site.posts limit: 8 %}
+            {% unless post.url == page.url %}
               <li><a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-            {% endfor %}
-          </ul>
-        </details>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty-state">No posts.</p>
       {% endif %}
-    {% else %}
-      <p class="empty-state">No posts.</p>
-    {% endif %}
-  </section>
+    </section>
+  {% endunless %}
 
-  <section>
-    <h3><a href="{{ '/notes/' | relative_url }}">Notes</a></h3>
-    {% assign notes = site.notes | sort: "title" %}
-    {% if notes.size > 0 %}
-      <ul>
-        {% for note in notes limit: 8 %}
-          <li><a href="{{ note.url | relative_url }}" title="{{ note.title }}">{{ note.title }}</a></li>
-        {% endfor %}
-      </ul>
-      {% if notes.size > 8 %}
-        <details class="index-more">
-          <summary>More notes</summary>
-          <ul>
-            {% for note in notes offset: 8 %}
+  {% unless is_notes_index %}
+    <section>
+      <h3>{% if page.collection == 'notes' %}More notes{% else %}Notes{% endif %}</h3>
+      {% assign notes = site.notes | sort: "title" %}
+      {% if notes.size > 0 %}
+        <ul>
+          {% for note in notes limit: 8 %}
+            {% unless note.url == page.url %}
               <li><a href="{{ note.url | relative_url }}" title="{{ note.title }}">{{ note.title }}</a></li>
-            {% endfor %}
-          </ul>
-        </details>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty-state">No notes.</p>
       {% endif %}
-    {% else %}
-      <p class="empty-state">No notes.</p>
-    {% endif %}
-  </section>
+    </section>
+  {% endunless %}
 </aside>

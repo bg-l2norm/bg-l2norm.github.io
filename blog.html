@@ -3,18 +3,20 @@ layout: default
 title: Blog
 permalink: /blog/
 ---
-<h1>Blog</h1>
+<section aria-labelledby="blog-heading">
+  <h1 class="visually-hidden" id="blog-heading">Blog</h1>
 
-{% if site.posts.size > 0 %}
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
-        <span>— {{ post.date | date: "%Y-%m-%d" }}</span>
-        {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncatewords: 34 }}</p>{% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No posts.</p>
-{% endif %}
+  {% if site.posts.size > 0 %}
+    <ul class="post-list">
+      {% for post in site.posts %}
+        <li>
+          <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
+          <span class="post-list-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+          {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncatewords: 34 }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No posts.</p>
+  {% endif %}
+</section>

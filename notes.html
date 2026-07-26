@@ -3,16 +3,18 @@ layout: default
 title: Notes
 permalink: /notes/
 ---
-<h1>Notes</h1>
+<section aria-labelledby="notes-heading">
+  <h1 class="visually-hidden" id="notes-heading">Notes</h1>
 
-{% assign notes = site.notes | sort: "title" %}
-{% if notes.size > 0 %}
-  <dl class="note-index">
-    {% for note in notes %}
-      <dt><a href="{{ note.url | relative_url }}">{{ note.title }}</a></dt>
-      <dd>{{ note.summary }}</dd>
-    {% endfor %}
-  </dl>
-{% else %}
-  <p>No notes.</p>
-{% endif %}
+  {% assign notes = site.notes | sort: "title" %}
+  {% if notes.size > 0 %}
+    <dl class="note-index">
+      {% for note in notes %}
+        <dt><a href="{{ note.url | relative_url }}">{{ note.title }}</a></dt>
+        {% if note.summary and note.summary != "" %}<dd>{{ note.summary }}</dd>{% endif %}
+      {% endfor %}
+    </dl>
+  {% else %}
+    <p>No notes.</p>
+  {% endif %}
+</section>

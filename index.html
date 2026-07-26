@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 <section aria-labelledby="events-heading">
-  <h1 id="events-heading">Home</h1>
+  <h1 class="visually-hidden" id="events-heading">Home</h1>
 
   <div class="event-inbox" id="events">
     {% if site.data.events and site.data.events.size > 0 %}
@@ -24,12 +24,12 @@ title: Home
               </p>
             {% endif %}
 
-            <button type="button" class="event-back" data-close-event>Back to events</button>
+            <button type="button" class="event-back" data-close-event>Back to updates</button>
           </div>
         </details>
       {% endfor %}
     {% else %}
-      <p>No events.</p>
+      <p>No updates.</p>
     {% endif %}
   </div>
 </section>
