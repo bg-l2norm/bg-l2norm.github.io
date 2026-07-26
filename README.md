@@ -1,79 +1,52 @@
-# Raw academic GitHub Pages site
+# bg-l2norm.github.io
 
-A deliberately plain personal site for blog posts, notes, achievements, and
-occasional images. It uses Jekyll, which GitHub Pages can build directly.
+A minimal Jekyll site with three primary pages: Home, Blog, and Notes.
 
-## 1. Create the repository
+## Home events
 
-Create a public repository named:
+Edit `_data/events.yml`. Each event supports:
 
-```text
-bg-l2norm.github.io
+```yaml
+- id: unique-event-id
+  title: "Event title"
+  date: "YYYY-MM-DD"
+  summary: "One-line summary"
+  body: |
+    Event details in Markdown.
+  url: "https://example.com"
+  link_label: "Open link"
 ```
 
-Copy these files into it. The GitHub username and email are already configured;
-edit the display name and description later if desired.
+The Home page renders events as an inbox-style list. Selecting an event expands it
+for focused reading. The same events also appear in the right-hand site index.
 
-## 2. Enable GitHub Pages
-
-In the repository:
-
-1. Open **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select `main` and `/ (root)`.
-
-The site will be published at `https://bg-l2norm.github.io`.
-
-## 3. Enable comments with giscus
-
-1. Keep the repository public.
-2. Enable **Settings → General → Features → Discussions**.
-3. Install the giscus GitHub App for the repository.
-4. Open `https://giscus.app`, enter the repository, choose the **pathname**
-   mapping, and choose a discussion category.
-5. Copy the generated `repo`, `repo-id`, `category`, and `category-id` values
-   into `_config.yml`.
-
-Visitors need a GitHub account to comment. Comments are stored as GitHub
-Discussions and can be moderated there.
-
-## 4. Write
-
-### Blog post
+## Blog posts
 
 Create `_posts/YYYY-MM-DD-title.md`:
 
 ```yaml
 ---
 title: "Post title"
-categories: [math, reading]
+categories: []
 ---
 
-Post body in Markdown.
+Post content.
 ```
 
-Comments are on by default. Disable them on a particular post with:
+## Notes
 
-```yaml
-comments: false
-```
-
-### Note
-
-Create `_notes/name.md`:
+Create `_notes/title.md`:
 
 ```yaml
 ---
 title: "Note title"
-summary: "One-line description."
+summary: "One-line summary"
 ---
 
-Living note in Markdown.
+Note content.
 ```
 
-## 5. Preview locally
-
-With Ruby and Bundler installed:
+## Local preview
 
 ```bash
 bundle install

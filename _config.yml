@@ -1,12 +1,10 @@
 title: "bg-l2norm"
-description: "Notes, essays, projects, and assorted fragments."
+description: ""
 url: "https://bg-l2norm.github.io"
 baseurl: ""
 
-# Used in the header and footer.
 author:
   name: "bg-l2norm"
-  email: "bengeorge1001@gmail.com"
   github: "bg-l2norm"
 
 permalink: /blog/:year/:month/:day/:title/
@@ -30,14 +28,6 @@ defaults:
     values:
       layout: default
 
-plugins:
-  - jekyll-feed
-
-feed:
-  path: feed.xml
-
-# Fill these values after configuring https://giscus.app
-# Comments remain hidden until all four required values are present.
 giscus:
   repo: "bg-l2norm/bg-l2norm.github.io"
   repo_id: ""

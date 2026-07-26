@@ -1,111 +1,310 @@
-/* Intentionally plain. The goal is an old academic homepage, not a product. */
+@import url("https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css");
 
 :root {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Computer Modern Serif", "Latin Modern Roman", "CMU Serif", serif;
   font-size: 18px;
   line-height: 1.55;
   color: #111;
-  background: #fdfdfb;
+  background: #fff;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  width: min(72rem, calc(100% - 2rem));
-  margin: 1.4rem auto 3rem;
+  width: min(76rem, calc(100% - 2rem));
+  margin: 1.5rem auto 3rem;
 }
 
-a { color: #0000bb; }
-a:visited { color: #551a8b; }
-a:hover { text-decoration-thickness: 2px; }
+a {
+  color: #111;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.site-header {
+  border-bottom: 1px solid #999;
+  padding-bottom: 0.75rem;
+}
 
 .site-header h1 {
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 3.6rem);
+  margin: 0 0 0.45rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: normal;
-  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .site-header h1 a {
-  color: inherit;
   text-decoration: none;
 }
 
-.terminal-line,
-.post-meta,
-.setup-note,
-footer {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.82rem;
-}
-
-.terminal-line { margin-bottom: 0.15rem; }
-.subtitle { margin: 0.15rem 0 0.8rem; }
-
 nav {
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  padding: 0.35rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-
-nav a { margin-right: 0.85rem; }
 
 .page-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 15rem;
-  gap: 2.2rem;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: 2.4rem;
   margin-top: 2rem;
 }
 
-main { min-width: 0; }
-aside { border-left: 1px solid #777; padding-left: 1rem; }
-aside h2 { font-size: 1rem; margin-bottom: 0.2rem; }
-aside ul { margin-top: 0.2rem; padding-left: 1.2rem; }
-aside section + section { margin-top: 1.6rem; }
-
-h1, h2, h3 { line-height: 1.15; }
-h1 { font-size: 2rem; }
-h2 { margin-top: 2rem; }
-
-article img,
-main > img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #777;
+main {
+  min-width: 0;
 }
 
-blockquote {
-  margin-left: 0;
-  padding-left: 1rem;
-  border-left: 3px solid #888;
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+}
+
+main > h1,
+main section > h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+code,
+pre,
+.post-meta,
+.event-date {
+  font-family: "Computer Modern Typewriter", "Latin Modern Mono", "CMU Typewriter Text", monospace;
 }
 
 pre {
   overflow-x: auto;
   padding: 0.8rem;
-  border: 1px solid #999;
-  background: #f4f4f0;
+  border: 1px solid #aaa;
 }
 
-code { font-size: 0.88em; }
+img {
+  max-width: 100%;
+  height: auto;
+}
 
-.post-list { padding-left: 1.2rem; }
-.post-list li { margin-bottom: 1rem; }
-.post-list p { margin: 0.2rem 0; }
-.post-header h1 { margin-bottom: 0.25rem; }
-.post-meta { margin-top: 0; }
+blockquote {
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 2px solid #999;
+}
 
-.note-index dt { font-weight: bold; }
-.note-index dd { margin: 0 0 1rem 1rem; }
+.event-inbox {
+  border-top: 1px solid #999;
+}
 
-.comments { margin-top: 3rem; }
-footer { margin-top: 3rem; }
+.event-item {
+  border-bottom: 1px solid #bbb;
+  scroll-margin-top: 1rem;
+}
+
+.event-item > summary {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.8fr) minmax(0, 1.4fr) auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.event-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+.event-item > summary::before {
+  content: "›";
+  grid-column: 1;
+  grid-row: 1;
+  width: 0;
+  transform: translateX(-0.85rem);
+}
+
+.event-item[open] > summary::before {
+  content: "⌄";
+}
+
+.event-title {
+  grid-column: 1;
+  grid-row: 1;
+  font-weight: bold;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-summary {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #444;
+}
+
+.event-date {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.event-body {
+  max-width: 46rem;
+  padding: 0 0 1rem;
+}
+
+.event-back {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  cursor: pointer;
+}
+
+.post-list {
+  padding-left: 1.2rem;
+}
+
+.post-list li {
+  margin-bottom: 1rem;
+}
+
+.post-list p {
+  margin: 0.2rem 0;
+}
+
+.post-header h1 {
+  margin-bottom: 0.25rem;
+}
+
+.post-meta {
+  margin-top: 0;
+  font-size: 0.82rem;
+}
+
+.note-index dt {
+  font-weight: bold;
+}
+
+.note-index dd {
+  margin: 0 0 1rem 1rem;
+}
+
+.comments {
+  margin-top: 3rem;
+}
+
+.site-index {
+  border-left: 1px solid #999;
+  padding-left: 1rem;
+  min-width: 0;
+}
+
+.site-index > h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  font-weight: normal;
+}
+
+.site-index h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.site-index section + section {
+  margin-top: 1.5rem;
+}
+
+.site-index ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.site-index li {
+  margin: 0.15rem 0;
+}
+
+.site-index li a {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.index-more {
+  margin-top: 0.35rem;
+}
+
+.index-more summary {
+  cursor: pointer;
+}
+
+.index-more ul {
+  margin-top: 0.35rem;
+}
+
+.empty-state {
+  margin: 0;
+  color: #555;
+}
+
+
+.event-inbox:has(.event-item:target) .event-item:not(:target) {
+  display: none;
+}
+
+.event-item:target {
+  border-top: 1px solid #bbb;
+}
 
 @media (max-width: 760px) {
-  .page-grid { grid-template-columns: 1fr; }
-  aside {
+  .page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-index {
     border-left: 0;
-    border-top: 1px solid #777;
-    padding: 1rem 0 0;
+    border-top: 1px solid #999;
+    padding: 1.25rem 0 0;
+  }
+
+  .event-item > summary {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.25rem 1rem;
+  }
+
+  .event-title {
+    grid-column: 1;
+  }
+
+  .event-date {
+    grid-column: 2;
+  }
+
+  .event-summary {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }

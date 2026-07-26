@@ -4,15 +4,15 @@ title: Notes
 permalink: /notes/
 ---
 <h1>Notes</h1>
-<p>
-  Notes are living documents rather than dated posts. Some are polished; some
-  are merely less chaotic than the paper they began on.
-</p>
 
-<dl class="note-index">
-  {% assign notes = site.notes | sort: "title" %}
-  {% for note in notes %}
-    <dt><a href="{{ note.url | relative_url }}">{{ note.title }}</a></dt>
-    <dd>{{ note.summary | default: "A working note." }}</dd>
-  {% endfor %}
-</dl>
+{% assign notes = site.notes | sort: "title" %}
+{% if notes.size > 0 %}
+  <dl class="note-index">
+    {% for note in notes %}
+      <dt><a href="{{ note.url | relative_url }}">{{ note.title }}</a></dt>
+      <dd>{{ note.summary }}</dd>
+    {% endfor %}
+  </dl>
+{% else %}
+  <p>No notes.</p>
+{% endif %}

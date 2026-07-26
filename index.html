@@ -2,31 +2,34 @@
 layout: default
 title: Home
 ---
-<h1>What’s here</h1>
+<section aria-labelledby="events-heading">
+  <h1 id="events-heading">Home</h1>
 
-<p>
-  This is my public notebook: longer essays, unfinished notes, project logs,
-  useful mistakes, and an occasionally maintained record of things I have done.
-</p>
+  <div class="event-inbox" id="events">
+    {% if site.data.events and site.data.events.size > 0 %}
+      {% for event in site.data.events %}
+        <details class="event-item" id="{{ event.id }}">
+          <summary>
+            <span class="event-title">{{ event.title }}</span>
+            <span class="event-summary">{{ event.summary }}</span>
+            <span class="event-date">{{ event.date }}</span>
+          </summary>
 
-<h2>Recent writing</h2>
-<ul class="post-list">
-  {% for post in site.posts limit: 8 %}
-    <li>
-      <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
-      <span>— {{ post.date | date: "%Y-%m-%d" }}</span>
-      {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncatewords: 34 }}</p>{% endif %}
-    </li>
-  {% endfor %}
-</ul>
+          <div class="event-body">
+            {{ event.body | markdownify }}
 
-<p><a href="{{ '/blog/' | relative_url }}">All blog posts →</a></p>
+            {% if event.url and event.url != "" %}
+              <p>
+                <a href="{{ event.url }}">{{ event.link_label | default: "Open link" }}</a>
+              </p>
+            {% endif %}
 
-<h2>Recently edited notes</h2>
-<dl class="note-index">
-  {% assign notes = site.notes | sort: "title" %}
-  {% for note in notes limit: 6 %}
-    <dt><a href="{{ note.url | relative_url }}">{{ note.title }}</a></dt>
-    <dd>{{ note.summary | default: "A working note." }}</dd>
-  {% endfor %}
-</dl>
+            <button type="button" class="event-back" data-close-event>Back to events</button>
+          </div>
+        </details>
+      {% endfor %}
+    {% else %}
+      <p>No events.</p>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,8 @@
+- id: event-1
+  title: "[Event title]"
+  date: "[Date]"
+  summary: "[One-line summary]"
+  body: |
+    [Event details]
+  url: ""
+  link_label: "[Link label]"

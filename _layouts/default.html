@@ -6,21 +6,14 @@
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | escape }}">
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
-    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
   </head>
   <body>
     <header class="site-header">
-      <p class="terminal-line">~/$ cat personal-site.txt</p>
       <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-      <p class="subtitle">{{ site.description }}</p>
       <nav aria-label="Primary navigation">
-        <a href="{{ '/' | relative_url }}">home</a>
-        <a href="{{ '/blog/' | relative_url }}">blog</a>
-        <a href="{{ '/notes/' | relative_url }}">notes</a>
-        <a href="{{ '/achievements/' | relative_url }}">achievements</a>
-        <a href="{{ '/about/' | relative_url }}">about</a>
-        <a href="{{ '/archive/' | relative_url }}">archive</a>
-        <a href="{{ '/feed.xml' | relative_url }}">rss</a>
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/blog/' | relative_url }}">Blog</a>
+        <a href="{{ '/notes/' | relative_url }}">Notes</a>
       </nav>
     </header>
 
@@ -31,13 +24,60 @@
       {% include sidebar.html %}
     </div>
 
-    <footer>
-      <hr>
-      <p>
-        © {{ 'now' | date: '%Y' }} {{ site.author.name }}.
-        Built from plain text and stubbornness.
-        <a href="https://github.com/{{ site.author.github }}/{{ site.author.github }}.github.io">source</a>
-      </p>
-    </footer>
+    <script>
+      (() => {
+        const items = Array.from(document.querySelectorAll("details.event-item"));
+
+        const clearEventHash = () => {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        };
+
+        const syncEventsWithHash = () => {
+          const id = decodeURIComponent(window.location.hash.slice(1));
+          const target = id ? document.getElementById(id) : null;
+          const selected = target && target.matches("details.event-item") ? target : null;
+
+          items.forEach((item) => {
+            item.open = item === selected;
+          });
+
+          if (selected) {
+            requestAnimationFrame(() => selected.scrollIntoView({ block: "start" }));
+          }
+        };
+
+        items.forEach((item) => {
+          const summary = item.querySelector("summary");
+
+          summary?.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            if (item.open && window.location.hash === `#${item.id}`) {
+              item.open = false;
+              clearEventHash();
+              summary.focus();
+              return;
+            }
+
+            window.location.hash = item.id;
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-close-event]");
+          if (!button) return;
+
+          const item = button.closest("details.event-item");
+          if (!item) return;
+
+          item.open = false;
+          clearEventHash();
+          item.querySelector("summary")?.focus();
+        });
+
+        window.addEventListener("hashchange", syncEventsWithHash);
+        syncEventsWithHash();
+      })();
+    </script>
   </body>
 </html>
