@@ -42,17 +42,18 @@ a:hover {
 
 .site-header-banner {
   width: 100%;
-  margin: -0.25rem 0 1rem;
+  margin: -0.08rem 0 0.82rem;
   overflow: hidden;
-  border-radius: 0.16rem;
+  border-radius: 0;
 }
 
 .site-header-banner img {
   display: block;
   width: 100%;
-  height: clamp(5.25rem, 12vw, 8.7rem);
+  height: clamp(2.9rem, 5.6vw, 4.35rem);
   object-fit: cover;
   object-position: center;
+  opacity: 0.98;
 }
 
 .site-header h1 {

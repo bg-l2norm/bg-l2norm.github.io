@@ -1,10 +1,10 @@
-title: "bg-l2norm"
+title: "Ben George"
 description: ""
 url: "https://bg-l2norm.github.io"
 baseurl: ""
 
 author:
-  name: "bg-l2norm"
+  name: "Ben George"
   github: "bg-l2norm"
 
 permalink: /blog/:year/:month/:day/:title/
