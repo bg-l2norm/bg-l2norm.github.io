@@ -9,6 +9,18 @@
   </head>
   <body>
     <header class="site-header{% if page.url == '/' %} site-header--home{% endif %}">
+      {% if page.url == '/' %}
+        <div class="site-header-banner" aria-hidden="true">
+          <img
+            src="{{ '/assets/images/icefire-topographic-banner.svg' | relative_url }}"
+            alt=""
+            width="2880"
+            height="360"
+            decoding="async"
+            fetchpriority="high">
+        </div>
+      {% endif %}
+
       <div class="site-header-copy">
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
         <nav aria-label="Primary navigation">
@@ -17,18 +29,6 @@
           <a href="{{ '/notes/' | relative_url }}">Notes</a>
         </nav>
       </div>
-
-      {% if page.url == '/' %}
-        <figure class="site-header-art">
-          <img
-            src="{{ '/assets/images/icefire-gradient-flow-header.png' | relative_url }}"
-            alt="A three-dimensional gradient-flow energy landscape with a square magnified inset."
-            width="900"
-            height="739"
-            decoding="async"
-            fetchpriority="high">
-        </figure>
-      {% endif %}
     </header>
 
     <div class="page-grid">
