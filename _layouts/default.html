@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | escape }}">
     <title>{% if page.url == '/' %}{{ site.title }}{% elsif page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/site.css?v=20260726-2' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/site.css?v=20260726-3' | relative_url }}">
   </head>
   <body>
-    <header class="site-header{% if page.url == '/' %} site-header--home{% endif %}">
-      {% if page.url == '/' %}
-        <div class="site-header-banner" aria-hidden="true">
-          <img
-            src="{{ '/assets/images/rosenbrock-manual-shooting-star-banner-v2.svg' | relative_url }}"
-            alt=""
-            width="1152"
-            height="144"
-            decoding="async"
-            fetchpriority="high">
-        </div>
-      {% endif %}
+    <header class="site-header">
+      <div class="site-header-banner" aria-hidden="true">
+        <img
+          src="{{ '/assets/images/rosenbrock-manual-shooting-star-banner-v2.svg' | relative_url }}"
+          alt=""
+          width="1152"
+          height="152"
+          decoding="async"
+          fetchpriority="high">
+      </div>
 
       <div class="site-header-copy">
         <p class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></p>

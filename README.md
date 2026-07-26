@@ -54,3 +54,7 @@ bundle exec jekyll serve
 ```
 
 Open `http://localhost:4000`.
+
+## Header banner
+
+The Rosenbrock shooting-star banner is shown globally on every page. Its full-width off-black container has a bounded responsive height to prevent layout changes between refreshes.
