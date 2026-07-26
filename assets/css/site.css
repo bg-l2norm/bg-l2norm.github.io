@@ -46,15 +46,17 @@ a:hover {
 .site-header-banner {
   width: 100%;
   margin: -0.08rem 0 0.82rem;
-  overflow: hidden;
-  border-radius: 0;
+  padding-block: 0.12rem;
+  overflow: visible;
+  line-height: 0;
 }
 
 .site-header-banner img {
   display: block;
   width: 100%;
-  height: clamp(3.6rem, 6.5vw, 5.2rem);
-  object-fit: fill;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
   object-position: center;
   opacity: 1;
 }
