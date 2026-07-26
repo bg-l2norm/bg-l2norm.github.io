@@ -36,6 +36,32 @@ a:hover {
   padding-bottom: 0.75rem;
 }
 
+.site-header-copy {
+  min-width: 0;
+}
+
+.site-header--home {
+  display: grid;
+  grid-template-columns: minmax(11rem, 1fr) auto;
+  gap: clamp(1.25rem, 4vw, 3.5rem);
+  align-items: center;
+  min-height: 18rem;
+}
+
+.site-header-art {
+  width: auto;
+  margin: -0.75rem 0 -0.6rem;
+  justify-self: end;
+}
+
+.site-header-art img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 27rem);
+  max-height: 20rem;
+  object-fit: contain;
+}
+
 .site-header h1 {
   margin: 0 0 0.45rem;
   font-size: clamp(2rem, 5vw, 3.2rem);
@@ -277,6 +303,25 @@ blockquote {
 
 .event-item:target {
   border-top: 1px solid #bbb;
+}
+
+@media (max-width: 900px) {
+  .site-header--home {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .site-header-art {
+    width: min(100%, 34rem);
+    margin: 0 auto -0.4rem;
+    justify-self: center;
+  }
+
+  .site-header-art img {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
 }
 
 @media (max-width: 760px) {
